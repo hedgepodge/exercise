@@ -47,4 +47,4 @@ while strike < 3:
     print("%dS %dB\n" %(strike, ball))
     tries += 1
     
-print("축하합니다. %d번만에 세 숫자의 값과 위치를 모두 맞추셨습니다." % (tries))
+print("축하합니다. %d번만에 세 숫자의 값과 위치를 모두 맞추셨습니다." % tries)
