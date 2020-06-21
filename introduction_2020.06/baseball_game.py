@@ -1,3 +1,5 @@
+### Version 1 ###
+
 from random import randint
 
 numbers = []
@@ -19,7 +21,7 @@ while strike < 3:
     guesses = ['a', 'a', 'a']
 
     for i in range(len(guesses)):
-        while guesses[i] not in list(map(str,range(10))): 
+        while True: 
             guesses[i] = input("%d번째 수를 입력하세요: " % (i + 1))
             interim = guesses[:]
             del interim[i]
@@ -34,8 +36,6 @@ while strike < 3:
     
     for i in range(len(guesses)):
         guesses[i] = int(guesses[i])
-    print(guesses)
-    print(numbers)
     
     i = 0
     while i < len(guesses):
@@ -47,5 +47,4 @@ while strike < 3:
     print("%dS %dB\n" %(strike, ball))
     tries += 1
     
-    if strike == 3:
-        print("축하합니다. %d번만에 세 숫자의 값과 위치를 모두 맞추셨습니다." % (tries))
+print("축하합니다. %d번만에 세 숫자의 값과 위치를 모두 맞추셨습니다." % (tries))
