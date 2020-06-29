@@ -278,28 +278,27 @@ from random import randint
 
 # 무작위로 정렬된 1 - 45 사이의 숫자 여섯개 뽑기
 def generate_numbers():
-    while True:
-        user_number = [randint(1, 45), randint(1, 45), randint(1, 45), randint(1, 45), randint(1, 45), randint(1, 45)]
+    user_number = []
+    while len(user_number) < 6:
+        new_number = randint(1, 45)
+        while new_number in user_number:
+            new_number = randint(1, 45)
+        user_number.append(new_number)
         user_number.sort()
-        check = 0
-        for i in range(len(user_number) - 1):
-            if user_number[i] == user_number[i + 1]:
-                check += 1
-        if check == 0:
-            break
     return user_number
 
 # 보너스까지 포함해 7개 숫자 뽑기
 # 정렬된 6개의 당첨 번호와 1개의 보너스 번호 리스트를 리턴
 # 예: [1, 7, 13, 23, 31, 41, 15]
 def draw_winning_numbers():
-    while True:
+    jackpot = []
+    while len(jackpot) < 7:
         jackpot = generate_numbers()
         bonus_number = randint(1, 45)
-        if bonus_number not in jackpot:
-            return jackpot + [bonus_number]
-        else:
-            continue
+        while bonus_number in jackpot:
+            bonus_number = randint(1, 45)
+        jackpot.append(bonus_number)
+    return jackpot
 
 # 두 리스트에서 중복되는 숫자가 몇개인지 구하기
 def count_matching_numbers(list1, list2):
@@ -312,7 +311,7 @@ def count_matching_numbers(list1, list2):
 # 로또 등수 확인하기
 def check(numbers, winning_numbers):
     count = count_matching_numbers(numbers, winning_numbers[0:6])
-    bonus_count = count_matching_numbers(numbers, winning_numbers[6])
+    bonus_count = count_matching_numbers(numbers, [winning_numbers[6]])
     if count == 6:
         return 1000000000
     elif count == 5:
@@ -326,9 +325,10 @@ def check(numbers, winning_numbers):
         return 5000
     else:
         return 0
-        
 
-        
+
+
+
 ### sample answer ###
 from random import randint
 
@@ -352,7 +352,7 @@ def draw_winning_numbers():
     winning_numbers = generate_numbers()
     while len(winning_numbers) < 7:
         new_number = randint(1, 45)
-        while new_number not in winning_numbers:
+        if new_number not in winning_numbers:
             winning_numbers.append(new_number)
 
     # 정렬하지 않고 리턴
