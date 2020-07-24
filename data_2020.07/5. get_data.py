@@ -161,12 +161,10 @@ print(rating_pages[0])
 import requests
 from bs4 import BeautifulSoup
 
-# 기간 지정
 years = list(range(2010, 2019))
 months = list(range(1, 13))
 weeks = list(range(0, 5))
 
-# 빈 리스트 생성
 rating_pages = []
 
 for year in years:
@@ -210,7 +208,7 @@ while True:
     else:
         break
 
-df = pd.DataFrame(data = records, columns = ["이름", "가격", "이미지 주소"])
+df = pd.DataFrame(data = records, columns = ["name", "price", "img url"])
 
 df.head()
 
