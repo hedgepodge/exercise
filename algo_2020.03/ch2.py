@@ -3,7 +3,7 @@
 def linear_search(element, some_list):
     for i in range(len(some_list)):
         if some_list[i] == element:
-            return(i)
+            return i
     return None
 
 print(linear_search(2, [2, 3, 5, 7, 11]))
@@ -20,7 +20,7 @@ def binary_search(element, some_list):
     while (start <= end):
         a = (start + end) // 2
         if some_list[a] == element:
-            return (a)
+            return a
         elif some_list[a] < element:
             start = a + 1
         else:
